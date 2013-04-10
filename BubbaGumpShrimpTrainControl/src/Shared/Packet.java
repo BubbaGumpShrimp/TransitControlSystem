@@ -1,3 +1,4 @@
+package Shared;
 public class Packet {
 	private boolean read;
 	private long timeCreated;

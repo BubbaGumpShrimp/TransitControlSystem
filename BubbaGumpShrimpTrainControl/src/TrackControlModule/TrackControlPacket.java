@@ -1,4 +1,7 @@
+package TrackControlModule;
+
 import java.util.ArrayList;
+import Shared.Packet;
 
 public class TrackControlPacket extends Packet {
 	boolean[] signals;

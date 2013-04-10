@@ -1,3 +1,4 @@
+package Shared;
 import java.util.Hashtable;
 
 public class Message {

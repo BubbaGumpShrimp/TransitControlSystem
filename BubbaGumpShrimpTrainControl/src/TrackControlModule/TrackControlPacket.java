@@ -4,33 +4,37 @@ import java.util.ArrayList;
 import Shared.Packet;
 
 public class TrackControlPacket extends Packet {
-	boolean[] signals;
-	boolean[] crossings;
-	int[] switches;
-	boolean[] broken;
-	boolean[] occupied;
-	ArrayList<ArrayList<Integer>> routes;
-	int controllerNumber;
+	private boolean[] signals;
+	private boolean[] crossings;
+	private int[] switches;
+	private boolean[] broken;
+	private boolean[] occupied;
+	private ArrayList<ArrayList<Integer>> routes;
+	private int trackController;
 	
 	//id = Track Controller module number
 	//intendedController = id number of specific track controller associated with data
-	public TrackControlPacket(int id, int intendedController) {
-		super(id);
-		controllerNumber = intendedController;
+	public TrackControlPacket(int senderID, int recipientID, boolean direction, int trackController) {
+		super(senderID, recipientID, direction);
+		this.trackController = trackController;
 	}
 	
 	//Data to be sent from the Track Model to the Track Controller
-	public void trackLoadData(boolean[] sigs, boolean[] cros, int[] swit, boolean[] brok, boolean[] occu) {
-		signals = sigs;
-		crossings = cros;
-		switches = swit;
-		broken = brok;
-		occupied = occu;
+	public void trackLoadData(boolean[] signals, boolean[] crossings, int[] switches, boolean[] broken, boolean[] occupied) {
+		this.signals = signals;
+		this.crossings = crossings;
+		this.switches = switches;
+		this.broken = broken;
+		this.occupied = occupied;
 	}
 	
 	//Data to be sent from the CTC Office to the Track Controller
-	public void ctcLoadData(ArrayList<ArrayList<Integer>> rout) {
-		routes = rout;
+	public void ctcLoadData(ArrayList<ArrayList<Integer>> routes) {
+		this.routes = routes;
+	}
+	
+	public int getTrackController() {
+		return trackController;
 	}
 
 	public boolean[] getSignals() {
@@ -55,9 +59,5 @@ public class TrackControlPacket extends Packet {
 
 	public ArrayList<ArrayList<Integer>> getRoutes() {
 		return routes;
-	}
-
-	public int getControllerNumber() {
-		return controllerNumber;
 	}
 }

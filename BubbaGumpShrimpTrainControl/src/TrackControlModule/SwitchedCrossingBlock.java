@@ -4,10 +4,10 @@ public class SwitchedCrossingBlock extends Block {
 	public int switchState;
 	private boolean crossing;
 
-	public SwitchedCrossingBlock(int blockID, int switchState) {
-		super(blockID);
+	public SwitchedCrossingBlock(int blockID, boolean signal, boolean crossing, int switchState) {
+		super(blockID, signal);
 		this.switchState = switchState;
-		crossing = false;
+		this.crossing = crossing;
 	}
 
 	public int getSwitchState() {

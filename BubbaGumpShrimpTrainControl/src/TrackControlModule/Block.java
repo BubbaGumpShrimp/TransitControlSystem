@@ -6,9 +6,11 @@ public class Block {
 	private boolean broken;
 	private int blockID;
 	
-	public Block(int blockID) {
+	private final int signalChange = 1;
+	
+	public Block(int blockID, boolean signal) {
 		occupied = false;
-		signal = false;
+		this.signal = signal;
 		broken = false;
 		this.blockID = blockID;
 	}
@@ -25,8 +27,8 @@ public class Block {
 		return signal;
 	}
 
-	public void setSignal(boolean signal) {
-		this.signal = signal;
+	public void toggleSignal() {
+		this.signal = !this.signal;
 	}
 
 	public boolean isBroken() {
@@ -35,5 +37,20 @@ public class Block {
 
 	public void setBroken(boolean broken) {
 		this.broken = broken;
+	}
+	
+	public int getBlockID() {
+		return blockID;
+	}
+	
+	public BlockChanges changesNeeded(Block otherBlock) {
+		BlockChanges changes = new BlockChanges(this.getBlockID());
+		if (this.isSignal() != otherBlock.isSignal()) {
+			changes.addChange(signalChange);
+		}
+		if (changes.anyChanges()) {
+			return changes;
+		}
+		return changes;
 	}
 }

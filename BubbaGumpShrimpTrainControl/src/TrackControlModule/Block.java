@@ -4,11 +4,13 @@ public class Block {
 	private boolean occupied;
 	private boolean signal;
 	private boolean broken;
+	private int blockID;
 	
-	public Block() {
+	public Block(int blockID) {
 		occupied = false;
 		signal = false;
 		broken = false;
+		this.blockID = blockID;
 	}
 
 	public boolean isOccupied() {

@@ -10,13 +10,13 @@ public class TrackControlPacket extends Packet {
 	private boolean[] broken;
 	private boolean[] occupied;
 	private ArrayList<ArrayList<Integer>> routes;
-	private int trackController;
+	private int trackControllerID;
 	
 	//id = Track Controller module number
 	//intendedController = id number of specific track controller associated with data
-	public TrackControlPacket(int senderID, int recipientID, boolean direction, int trackController) {
+	public TrackControlPacket(int senderID, int recipientID, boolean direction, int trackControllerID) {
 		super(senderID, recipientID, direction);
-		this.trackController = trackController;
+		this.trackControllerID = trackControllerID;
 	}
 	
 	//Data to be sent from the Track Model to the Track Controller
@@ -33,8 +33,8 @@ public class TrackControlPacket extends Packet {
 		this.routes = routes;
 	}
 	
-	public int getTrackController() {
-		return trackController;
+	public int getTrackControllerID() {
+		return trackControllerID;
 	}
 
 	public boolean[] getSignals() {

@@ -3,8 +3,8 @@ package TrackControlModule;
 public class CrossingBlock extends Block {
 	private boolean crossing;
 	
-	public CrossingBlock() {
-		super();
+	public CrossingBlock(int blockID) {
+		super(blockID);
 		crossing = false;
 	}
 

@@ -5,9 +5,9 @@ import Shared.Packet;
 
 public class TrackControlComm implements Communication {
 	private final int myID = 2;
-	private int trackController;
+	private TrackController trackController;
 	
-	public TrackControlComm(int trackController) {
+	public TrackControlComm(TrackController trackController) {
 		this.trackController = trackController;
 	}
 	public void receivePacket(Packet packet) {
@@ -29,15 +29,6 @@ public class TrackControlComm implements Communication {
 			else if (packet.getSender() == 3) {
 				//Set data provided by Track Model
 			}
-		}
-	}
-
-	public void forwardPacket(Packet packet) {
-		if (packet.getDirection()) {
-			//Call receivePacket(packet) for Track Model
-		}
-		else {
-			//Call receivePacket(packet for CTC Office
 		}
 	}
 

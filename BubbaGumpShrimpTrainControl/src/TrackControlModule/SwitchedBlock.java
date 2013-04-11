@@ -3,8 +3,8 @@ package TrackControlModule;
 public class SwitchedBlock extends Block {
 	public int switchState;
 	
-	public SwitchedBlock(int switchState) {
-		super();
+	public SwitchedBlock(int blockID, int switchState) {
+		super(blockID);
 		this.switchState = switchState;
 	}
 

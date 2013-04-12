@@ -44,8 +44,18 @@ public class TrackController {
 	}
 	
 	public void runPLC() {
-		ArrayList<BlockChanges> changes = PLCProgram.getPLCAction(this);
-		implementChanges(changes);
+		//ArrayList<BlockChanges> changes = PLCProgram.getPLCAction(this);
+		//implementChanges(changes);
+		ArrayList<BlockChanges> firstChanges = PLCProgram.getPLCAction(this);
+		ArrayList<BlockChanges> secondChanges = PLCProgram.getPLCAction(this);
+		ArrayList<BlockChanges> thirdChanges = PLCProgram.getPLCAction(this);
+		if (firstChanges.equals(secondChanges) && secondChanges.equals(thirdChanges)) {
+			System.out.println("PLC Passed Triple Redundancy Check");
+			implementChanges(firstChanges);
+		}
+		else {
+			System.out.println("PLC Failed Triple Redundancy Check");
+		}
 	}
 	
 	private void implementChanges(ArrayList<BlockChanges> blockChanges) {

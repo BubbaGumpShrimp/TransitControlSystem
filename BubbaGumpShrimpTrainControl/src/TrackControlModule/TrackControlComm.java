@@ -20,7 +20,6 @@ public class TrackControlComm implements Communication {
 	}
 
 	public void getPacketData(Packet packet) {
-		// TODO Auto-generated method stub
 		if (packet instanceof TrackControlPacket) {
 			TrackControlPacket confirmedPacket = (TrackControlPacket) packet;
 			if (packet.getSender() == 1) {
@@ -43,7 +42,6 @@ public class TrackControlComm implements Communication {
 	}
 
 	public void sendPacket(Packet packet) {
-		// TODO Auto-generated method stub
 		if (packet.getDirection()) {
 			//send packet to Track Model
 		}

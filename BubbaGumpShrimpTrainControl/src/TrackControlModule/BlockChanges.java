@@ -27,6 +27,32 @@ public class BlockChanges {
 		return blockNumber;
 	}
 	
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + blockNumber;
+		result = prime * result + ((changes == null) ? 0 : changes.hashCode());
+		return result;
+	}
+
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BlockChanges other = (BlockChanges) obj;
+		if (this.blockNumber != other.blockNumber)
+			return false;
+		if (this.changes == null) {
+			if (other.changes != null)
+				return false;
+		} else if (!changes.equals(other.changes))
+			return false;
+		return true;
+	}
+
 	public String toString() {
 		String s = "#"+blockNumber+": ";
 		s += changes.toString();

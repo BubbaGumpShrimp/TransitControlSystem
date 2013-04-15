@@ -3,7 +3,7 @@
 ///Jabari Dawkins
 ///April 10, 2013
 
-package CTCOffice;
+package CTCOfficeModule;
 
 import java.util.ArrayList;
 import java.io.*;

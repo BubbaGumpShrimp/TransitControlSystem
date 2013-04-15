@@ -3,7 +3,7 @@
 ///Jabari Dawkins
 ///April 11, 2013
 
-package CTCOffice;
+package CTCOfficeModule;
 
 import java.util.*;
 import java.io.*;

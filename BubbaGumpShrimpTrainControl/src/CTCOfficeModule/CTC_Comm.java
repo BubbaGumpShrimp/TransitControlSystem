@@ -3,7 +3,7 @@
 ///Jabari Dawkins
 ///April 10, 2013
 
-package CTCOffice;
+package CTCOfficeModule;
 
 import shared.Communication;
 import trainControlModule.TrainControlPacket;

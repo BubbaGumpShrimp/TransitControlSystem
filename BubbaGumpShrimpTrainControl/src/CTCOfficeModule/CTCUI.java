@@ -1,4 +1,4 @@
-package CTCOffice;
+package CTCOfficeModule;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;

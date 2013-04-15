@@ -1,3 +1,4 @@
+package CTCOfficeModule;
 ///Bubba Gump Shrimp Co.
 ///Schedule Class for CTC Office
 ///Jabari Dawkins

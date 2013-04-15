@@ -9,7 +9,7 @@ public class TrackControlPacket extends Packet {
 	private int[] switches;
 	private boolean[] broken;
 	private boolean[] occupied;
-	private ArrayList<ArrayList<Integer>> routes;
+	private ArrayList<Route> routes;
 	private int trackControllerID;
 	
 	//id = Track Controller module number
@@ -29,7 +29,7 @@ public class TrackControlPacket extends Packet {
 	}
 	
 	//Data to be sent from the CTC Office to the Track Controller
-	public void ctcLoadData(ArrayList<ArrayList<Integer>> routes) {
+	public void ctcLoadData(ArrayList<Route> routes) {
 		this.routes = routes;
 	}
 	
@@ -57,7 +57,7 @@ public class TrackControlPacket extends Packet {
 		return occupied;
 	}
 
-	public ArrayList<ArrayList<Integer>> getRoutes() {
+	public ArrayList<Route> getRoutes() {
 		return routes;
 	}
 }

@@ -7,7 +7,7 @@ public class TrackController {
 	private int trackControllerID;
 	private TrackControlComm comm;
 	private Hashtable<Integer, Block> blocks;
-	
+	private ArrayList<Route> routes;
 	private final int signalChange = 1;
 	private final int crossingChange = 2;
 	
@@ -15,6 +15,7 @@ public class TrackController {
 		this.trackControllerID = trackControllerID;
 		comm = new TrackControlComm(this);
 		blocks = new Hashtable<Integer, Block>();
+		routes = new ArrayList<Route>();
 		for (int i=0; i<blockNumbers.size(); i++) {
 			if (isCrossing.get(i) && switchState.get(i) != 0) {
 				blocks.put(blockNumbers.get(i), new SwitchedCrossingBlock(blockNumbers.get(i), false, false, switchState.get(i)));
@@ -41,6 +42,18 @@ public class TrackController {
 
 	public Block getBlock(int blockID) {
 		return blocks.get(blockID);
+	}
+	
+	public void addRoutes(ArrayList<Route> routes) {
+		routes.addAll(routes);
+	}
+	
+	public Route getRoute(int routeNumber) {
+		return routes.get(routeNumber);
+	}
+	
+	public void removeRoute(Route route) {
+		routes.remove(route);
 	}
 	
 	public void runPLC() {

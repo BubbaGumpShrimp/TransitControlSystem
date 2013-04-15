@@ -24,9 +24,11 @@ public class TrackControlComm implements Communication {
 			TrackControlPacket confirmedPacket = (TrackControlPacket) packet;
 			if (packet.getSender() == 1) {
 				//Set data provided by CTC Office
+				trackController.addRoutes(confirmedPacket.getRoutes());
 			}
 			else if (packet.getSender() == 3) {
 				//Set data provided by Track Model
+				
 			}
 		}
 	}

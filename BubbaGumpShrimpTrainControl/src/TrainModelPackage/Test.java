@@ -1,4 +1,4 @@
-package TrackModelPackage;
+package TrainModelPackage;
 
 public class Test {
 

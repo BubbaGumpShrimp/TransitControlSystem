@@ -5,5 +5,18 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.swt.win32.win32.x86_64_3.7.2.v3740f.jar" sourcepath="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.swt.win32.win32.x86_64_3.7.2.v3740f.jar"/>
 	<classpathentry kind="lib" path="swing2swt.jar"/>
 	<classpathentry kind="lib" path="swt-grouplayout.jar"/>
+	<classpathentry kind="lib" path="jxl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.core.databinding_1.4.0.I20110111-0800.jar" sourcepath="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.core.databinding_1.4.0.I20110111-0800.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.core.databinding.beans_1.2.100.I20100824-0800.jar" sourcepath="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.core.databinding.beans_1.2.100.I20100824-0800.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.core.databinding.observable_1.4.0.I20110222-0800.jar" sourcepath="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.core.databinding.observable_1.4.0.I20110222-0800.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.core.databinding.property_1.4.0.I20110222-0800.jar" sourcepath="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.core.databinding.property_1.4.0.I20110222-0800.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.jface.databinding_1.5.0.I20100907-0800.jar" sourcepath="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.jface.databinding_1.5.0.I20100907-0800.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.equinox.common_3.6.0.v20110523.jar" sourcepath="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.equinox.common_3.6.0.v20110523.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/com.ibm.icu_4.4.2.v20110823.jar" sourcepath="C:/Users/John/Documents/Eclipse/plugins/com.ibm.icu_4.4.2.v20110823.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.jface_3.7.0.v20110928-1505.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.core.commands_3.6.0.I20110111-0800.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.core.runtime_3.7.0.v20110110.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.osgi_3.7.2.v20120110-1415.jar"/>
+	<classpathentry kind="lib" path="C:/Users/John/Documents/Eclipse/plugins/org.eclipse.ui.forms_3.5.101.v20111011-1919.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -5,7 +5,7 @@
 
 package CTCOfficeModule;
 
-import shared.Communication;
+import Shared.Communication;
 import trainControlModule.TrainControlPacket;
 import trackControlModule.TrackControlPacket;
 import trainControlModule.TrainControlComm;

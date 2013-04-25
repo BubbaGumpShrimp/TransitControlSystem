@@ -1,7 +1,6 @@
 package TrackControlModule;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Hashtable;
 
 public class TrackController {
@@ -10,11 +9,7 @@ public class TrackController {
 	private Hashtable<Integer, Block> blocks;
 	private ArrayList<Block> blockList;
 	private ArrayList<Route> routes;
-	private ArrayList<Train> trains;
-	
-	private final int signalChange = 1;
-	private final int crossingChange = 2;
-	private final int switchChange = 3;
+	private ArrayList<Train> trainList;
 	
 	public TrackController(int trackControllerID) {
 		this.trackControllerID = trackControllerID;
@@ -22,13 +17,16 @@ public class TrackController {
 		blocks = new Hashtable<Integer, Block>();
 		routes = new ArrayList<Route>();
 		blockList = new ArrayList<Block>();
+		trainList = new ArrayList<Train>();
 	}
 	
+	//Adds a new block to this track controller
 	public void addBlock(int blockNumber, int speedLimit, int switch1, int switch2, int crossing, int overlap) {
 		blocks.put(blockNumber, new Block(blockNumber, speedLimit, false, intToBool(overlap), crossing, switch1, switch2));
 		blockList.add(blocks.get(blockNumber));
 	}
 	
+	//Internally used method to quicly convert an int to a boolean
 	private boolean intToBool(int i) {
 		return i != 0;
 	}
@@ -45,6 +43,7 @@ public class TrackController {
 		return blocks.get(blockID);
 	}
 	
+	//Add a route provided by the CTC Office
 	public void addRoutes(ArrayList<Route> routes) {
 		routes.addAll(routes);
 	}
@@ -57,12 +56,14 @@ public class TrackController {
 		routes.remove(route);
 	}
 	
+	//Add a train when it enters one of the blocks controlled by this controller
 	public void addTrain(Train t) {
-		trains.add(t);
+		trainList.add(t);
 	}
 	
+	//Get the train on a certain block
 	public Train getTrain(int blockNumber) {
-		for (Train t: trains) {
+		for (Train t: trainList) {
 			if (t.getBlockLocated() == blockNumber) {
 				return t;
 			}
@@ -70,66 +71,39 @@ public class TrackController {
 		return null;
 	}
 	
+	//Sends this controller to the PLC Program to perform the appropriate logic
 	public void runPLC() {
-		//ArrayList<BlockChanges> changes = PLCProgram.getPLCAction(this);
-		//implementChanges(changes);
-		ArrayList<BlockChanges> firstChanges = PLCProgram.getPLCAction(this);
-		ArrayList<BlockChanges> secondChanges = PLCProgram.getPLCAction(this);
-		ArrayList<BlockChanges> thirdChanges = PLCProgram.getPLCAction(this);
-		if (firstChanges.equals(secondChanges) && secondChanges.equals(thirdChanges)) {
-			System.out.println("PLC Passed Triple Redundancy Check");
-			implementChanges(firstChanges);
-		}
-		else {
-			System.out.println("PLC Failed Triple Redundancy Check");
-		}
+		PLCProgram.getPLCAction(this);
 	}
 	
-	private void implementChanges(ArrayList<BlockChanges> blockChanges) {
-		for (BlockChanges changes: blockChanges) {
-			while (changes.anyChanges()) {
-				int blockNumber = changes.getBlockNumber();
-				int change = changes.getChange();
-				switch (change) {
-					case signalChange:
-						this.getBlock(blockNumber).toggleSignal();
-					case crossingChange:
-						this.getBlock(blockNumber).toggleCrossing();
-					case switchChange:
-						this.getBlock(blockNumber).toggleSwitch();
-				}
-			}
-		}
-	}
-	
-//	public void printStatus() {
-//		System.out.format("Block#   Occupied   Signal   Crossing%n");
-//		for (int key: blocks.keySet()) {
-//			Block block = blocks.get(key);
-//			System.out.format("%-9d%-11s%-9s",key,block.isOccupied(),block.isSignal());
-//			if (block instanceof CrossingBlock) {
-//				System.out.format("%s",((CrossingBlock)block).isCrossing());
-//			}
-//			System.out.format("%n");
-//		}
-//	}
-	
-	public ArrayList<Block> getAllBlocks() {
-		ArrayList<Block> temp = new ArrayList<Block>();
-		ArrayList<Integer> keys = new ArrayList<Integer>();
-		keys.addAll(blocks.keySet());
-		Collections.sort(keys);
-		for (int key: keys) {
-			temp.add(blocks.get(key));
-		}
-		return temp;
-	}
-	
-	public String toString() {
-		return "Controller #"+trackControllerID;
-	}
-	
+	//List version of blocks on this controller for the UI
 	public ArrayList<Block> getBlockList() {
 		return blockList;
+	}
+	
+	//List version of trains on this controller for the UI
+	public ArrayList<Train> getTrainList() {
+		return trainList;
+	}
+	
+	//Used by the PLC program to get a list of all occupied blocks under this controller
+	public ArrayList<Integer> getOccupiedBlocks() {
+		ArrayList<Integer> occupiedBlocks = new ArrayList<Integer>();
+		for (Block b: blockList) {
+			if (b.isOccupied()) {
+				occupiedBlocks.add(b.getBlockID());
+			}
+		}
+		return occupiedBlocks;
+	}
+	
+	//Determines if a train was at this block during the last PLC calculation
+	public boolean wasTrainHere(int blockNumber) {
+		for (Train t: trainList) {
+			if (t.getBlockLocated() == blockNumber) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

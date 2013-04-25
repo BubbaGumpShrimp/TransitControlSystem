@@ -1,18 +1,24 @@
 package TrackControlModule;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Train {
 	private int assumedNumber;
 	private int blockLocated;
 	private int authorityIssued;
 	private int speedIssued;
+	private int lastBlock;
 	
-	public Train(int assumedNumber, int beginBlock, int initialAuthority, int initialSpeed) {
+	public Train(int assumedNumber, int beginBlock, int initialAuthority, int initialSpeed, int lastBlock) {
 		this.assumedNumber = assumedNumber;
 		this.blockLocated = beginBlock;
 		this.authorityIssued = initialAuthority;
 		this.speedIssued = initialSpeed;
+		this.lastBlock = lastBlock;
 	}
 
+	//The assumed train number based on available information from CTC Office, if not known, this is 0
 	public int getAssumedNumber() {
 		return assumedNumber;
 	}
@@ -26,6 +32,7 @@ public class Train {
 	}
 
 	public void setBlockLocated(int blockLocated) {
+		lastBlock = this.blockLocated;
 		this.blockLocated = blockLocated;
 	}
 
@@ -43,5 +50,9 @@ public class Train {
 
 	public void setSpeedIssued(int speedIssued) {
 		this.speedIssued = speedIssued;
+	}
+	
+	public int getLastBlock() {
+		return lastBlock;
 	}
 }

@@ -30,6 +30,11 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.databinding.viewers.ViewerProperties;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+
+//Most UI code generated automatically using WindowBuilder Eclipse plugin
 
 public class TrackControlUI extends ApplicationWindow {
 	private DataBindingContext m_bindingContext;
@@ -73,14 +78,26 @@ public class TrackControlUI extends ApplicationWindow {
 	private TableViewerColumn tableViewerColumn_12;
 	private TableColumn redCrossing;
 	private TableViewerColumn tableViewerColumn_13;
+	private Table redTrainTable;
+	private Table greenTrainTable;
+	private TableViewer greenTrainTable1;
+	private TableColumn greenTrainList;
+	private TableViewerColumn tableViewerColumn_18;
+	private TableColumn greenTrainBlock;
+	private TableViewerColumn tableViewerColumn_19;
+	private TableColumn greenTrainAuthority;
+	private TableViewerColumn tableViewerColumn_20;
+	private TableColumn greenTrainSpeed;
+	private TableViewerColumn tableViewerColumn_21;
 
 	/**
 	 * Create the application window.
 	 */
 	public TrackControlUI() {
 		super(null);
-		redLine = new TrackLine("Red Line","resources/TrackControlLines.xls");
-		greenLine = new TrackLine("Green Line","resources/TrackControlLines.xls");
+		//Initialize the two track lines using the included Excel resource file
+		redLine = new TrackLine("Red Line","TrackControlLines.xls");
+		greenLine = new TrackLine("Green Line","TrackControlLines.xls");
 		createActions();
 		addMenuBar();
 		addStatusLine();
@@ -107,11 +124,11 @@ public class TrackControlUI extends ApplicationWindow {
 					greenControllerTable = greenControllerTable1.getTable();
 					greenControllerTable.setLinesVisible(true);
 					greenControllerTable.setHeaderVisible(true);
-					greenControllerTable.setBounds(10, 10, 70, 311);
+					greenControllerTable.setBounds(10, 10, 80, 486);
 					
 					tableViewerColumn_6 = new TableViewerColumn(greenControllerTable1, SWT.NONE);
 					greenControllerColumn = tableViewerColumn_6.getColumn();
-					greenControllerColumn.setWidth(65);
+					greenControllerColumn.setWidth(75);
 					greenControllerColumn.setText("Controller");
 					
 					greenBlockTable1 = new TableViewer(composite, SWT.BORDER | SWT.FULL_SELECTION);
@@ -149,6 +166,44 @@ public class TrackControlUI extends ApplicationWindow {
 					greenCrossing = tableViewerColumn_5.getColumn();
 					greenCrossing.setText("Crossing");
 					greenCrossing.setWidth(70);
+					
+					greenTrainTable1 = new TableViewer(composite, SWT.BORDER | SWT.FULL_SELECTION);
+					greenTrainTable = greenTrainTable1.getTable();
+					greenTrainTable.setLinesVisible(true);
+					greenTrainTable.setHeaderVisible(true);
+					greenTrainTable.setBounds(96, 327, 470, 169);
+					
+					tableViewerColumn_18 = new TableViewerColumn(greenTrainTable1, SWT.NONE);
+					greenTrainList = tableViewerColumn_18.getColumn();
+					greenTrainList.setWidth(75);
+					greenTrainList.setText("Train");
+					
+					tableViewerColumn_19 = new TableViewerColumn(greenTrainTable1, SWT.NONE);
+					greenTrainBlock = tableViewerColumn_19.getColumn();
+					greenTrainBlock.setWidth(75);
+					greenTrainBlock.setText("Block");
+					
+					tableViewerColumn_20 = new TableViewerColumn(greenTrainTable1, SWT.NONE);
+					greenTrainAuthority = tableViewerColumn_20.getColumn();
+					greenTrainAuthority.setWidth(75);
+					greenTrainAuthority.setText("Authority");
+					
+					tableViewerColumn_21 = new TableViewerColumn(greenTrainTable1, SWT.NONE);
+					greenTrainSpeed = tableViewerColumn_21.getColumn();
+					greenTrainSpeed.setWidth(100);
+					greenTrainSpeed.setText("Speed");
+					
+					Button btnToggleOccupied = new Button(composite, SWT.NONE);
+					btnToggleOccupied.addSelectionListener(new SelectionAdapter() {
+						@Override
+						public void widgetSelected(SelectionEvent e) {
+							System.out.println("Button pressed: "+greenLine.getTrackController(1).getBlock(13).isOccupied());
+							greenLine.getTrackController(1).getBlock(13).toggleOccupied();
+							System.out.println("Button pressed: "+greenLine.getTrackController(1).getBlock(13).isOccupied());
+						}
+					});
+					btnToggleOccupied.setBounds(572, 10, 94, 25);
+					btnToggleOccupied.setText("Toggle Occupied");
 				}
 			}
 			{
@@ -162,11 +217,11 @@ public class TrackControlUI extends ApplicationWindow {
 				redControllerTable = redControllerTable1.getTable();
 				redControllerTable.setLinesVisible(true);
 				redControllerTable.setHeaderVisible(true);
-				redControllerTable.setBounds(10, 10, 70, 311);
+				redControllerTable.setBounds(10, 10, 80, 486);
 				
 				tableViewerColumn_7 = new TableViewerColumn(redControllerTable1, SWT.NONE);
 				redControllerColumn = tableViewerColumn_7.getColumn();
-				redControllerColumn.setWidth(65);
+				redControllerColumn.setWidth(75);
 				redControllerColumn.setText("Controller");
 				
 				redBlockTable1 = new TableViewer(composite_1, SWT.BORDER | SWT.FULL_SELECTION);
@@ -204,6 +259,32 @@ public class TrackControlUI extends ApplicationWindow {
 				redCrossing = tableViewerColumn_13.getColumn();
 				redCrossing.setWidth(70);
 				redCrossing.setText("Crossing");
+				
+				TableViewer redTrainTable1 = new TableViewer(composite_1, SWT.BORDER | SWT.FULL_SELECTION);
+				redTrainTable = redTrainTable1.getTable();
+				redTrainTable.setLinesVisible(true);
+				redTrainTable.setHeaderVisible(true);
+				redTrainTable.setBounds(96, 327, 470, 169);
+				
+				TableViewerColumn tableViewerColumn_14 = new TableViewerColumn(redTrainTable1, SWT.NONE);
+				TableColumn redTrainList = tableViewerColumn_14.getColumn();
+				redTrainList.setWidth(75);
+				redTrainList.setText("Train");
+				
+				TableViewerColumn tableViewerColumn_15 = new TableViewerColumn(redTrainTable1, SWT.NONE);
+				TableColumn redTrainBlock = tableViewerColumn_15.getColumn();
+				redTrainBlock.setWidth(75);
+				redTrainBlock.setText("Block");
+				
+				TableViewerColumn tableViewerColumn_16 = new TableViewerColumn(redTrainTable1, SWT.NONE);
+				TableColumn redTrainAuthority = tableViewerColumn_16.getColumn();
+				redTrainAuthority.setWidth(75);
+				redTrainAuthority.setText("Authority");
+				
+				TableViewerColumn tableViewerColumn_17 = new TableViewerColumn(redTrainTable1, SWT.NONE);
+				TableColumn redTrainSpeed = tableViewerColumn_17.getColumn();
+				redTrainSpeed.setWidth(100);
+				redTrainSpeed.setText("Speed");
 			}
 		}
 		m_bindingContext = initDataBindings();
@@ -263,7 +344,7 @@ public class TrackControlUI extends ApplicationWindow {
 	 */
 	@Override
 	protected Point getInitialSize() {
-		return new Point(600, 425);
+		return new Point(700, 600);
 	}
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
@@ -301,6 +382,15 @@ public class TrackControlUI extends ApplicationWindow {
 		IObservableValue observeSingleSelectionRedControllerTable1 = ViewerProperties.singleSelection().observe(redControllerTable1);
 		IObservableList redControllerTable1BlockListObserveDetailList = PojoProperties.list(TrackController.class, "blockList", Block.class).observeDetail(observeSingleSelectionRedControllerTable1);
 		redBlockTable1.setInput(redControllerTable1BlockListObserveDetailList);
+		//
+		ObservableListContentProvider listContentProvider_4 = new ObservableListContentProvider();
+		IObservableMap[] observeMaps_2 = PojoObservables.observeMaps(listContentProvider_4.getKnownElements(), Train.class, new String[]{"assumedNumber", "blockLocated", "authorityIssued", "speedIssued"});
+		greenTrainTable1.setLabelProvider(new ObservableMapLabelProvider(observeMaps_2));
+		greenTrainTable1.setContentProvider(listContentProvider_4);
+		//
+		IObservableValue observeSingleSelectionGreenControllerTable1_1 = ViewerProperties.singleSelection().observe(greenControllerTable1);
+		IObservableList greenControllerTable1TrainListObserveDetailList = PojoProperties.list(TrackController.class, "trainList", Train.class).observeDetail(observeSingleSelectionGreenControllerTable1_1);
+		greenTrainTable1.setInput(greenControllerTable1TrainListObserveDetailList);
 		//
 		return bindingContext;
 	}

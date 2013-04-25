@@ -27,11 +27,7 @@ public class TrackLine {
 			System.out.println("IOException");
 			e.printStackTrace();
 		}
-		System.out.println(name);
-		System.out.println(workbook.getSheet(0).getName());
-		System.out.println(workbook.getSheet(1).getName());
 		Sheet sheet = workbook.getSheet(name);
-		System.out.println(sheet.getRows());
 		for (int i=1; i<sheet.getRows(); i++) {
 			int currentController = Integer.parseInt(sheet.getCell(0,i).getContents());
 			if (!trackControllers.containsKey(currentController)) {
@@ -65,7 +61,6 @@ public class TrackLine {
 		Collections.sort(keys);
 		for (int key: keys) {
 			trackControllerList.add(trackControllers.get(key));
-			System.out.println(trackControllers.get(key).getBlockList());
 		}
 	}
 }
